@@ -46,9 +46,7 @@ export const CharacterComponent: React.FunctionComponent<Props> = (props) => {
             <TextFieldComponent name="species" label="Species" />
             <TextFieldComponent name="type" label="Type" />
             <TextFieldComponent name="gender" label="Gender" />
-            <TextFieldComponent name="origin" label="Origin" />
             <TextFieldComponent name="location" label="Location" />
-            <TextFieldComponent name="bestSentences" label="Best Sentences" />
             <Box
               m={1}
               display="flex"

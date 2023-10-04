@@ -1,16 +1,25 @@
-import { FetchCharacterListResponse } from './character-collection.api-model';
+import { gql } from 'graphql-request';
+import { graphqlCharacterResponse } from './character-collection.api-model';
 import { Character} from "pods/character/api";
+import { graphQLClient } from 'core/api/graphql.client';
 
 const url = `/api/character`;
 
 export const getCharacterCollection = async (): Promise<Character[]> => {
-  try {
-    return await fetch(url).then(
-      response => response.json()
-    ).catch((error) => {
-      console.error("Error fetching members: ", error);
-    });
-  } catch (error) {
-    console.error("Error fetching character/s: ", error);
-  }
+  const query = gql `query {
+    characters(page:1){
+      results {
+        id,
+        name,
+        image,
+        status,
+        species,
+        type,
+        gender,
+        location {name}
+      }
+    }
+  }`;
+  const characterPage = await graphQLClient.request<graphqlCharacterResponse>(query);
+  return characterPage.characters.results;
 }

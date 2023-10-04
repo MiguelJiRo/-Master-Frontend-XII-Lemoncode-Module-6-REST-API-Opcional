@@ -9,3 +9,9 @@ export interface FetchCharacterListResponse {
   },
   results: Character[];
 }
+
+export interface graphqlCharacterResponse {
+  characters: {
+    results: Character[]
+  }
+}
